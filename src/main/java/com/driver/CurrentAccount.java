@@ -6,6 +6,11 @@ public class CurrentAccount extends BankAccount{
     public CurrentAccount(String name, double balance, String tradeLicenseId) throws Exception {
         // minimum balance is 5000 by default. If balance is less than 5000, throw "Insufficient Balance" exception
 
+        super(name,balance,5000.0);
+          if(getMinBalance() < 5000.0)
+              throw new Exception("Insufficient Balance");
+
+
     }
 
     public void validateLicenseId() throws Exception {
@@ -13,7 +18,29 @@ public class CurrentAccount extends BankAccount{
         // If the license Id is valid, do nothing
         // If the characters of the license Id can be rearranged to create any valid license Id
         // If it is not possible, throw "Valid License can not be generated" Exception
+      boolean isvalid = true;
+        for(int i =0 ; i < tradeLicenseId.length()-1;i++)
+        {
+            char ch =tradeLicenseId.charAt(i);
+            if(ch == tradeLicenseId.charAt(i+1))
+            {
+                isvalid=false;
+                break;
+            }
+
+        }
+        if(isvalid == false)
+        {
+            throw new Exception("Valid License can not be generated");
+        }
 
     }
 
+    public String getTradeLicenseId() {
+        return tradeLicenseId;
+    }
+
+    public void setTradeLicenseId(String tradeLicenseId) {
+        this.tradeLicenseId = tradeLicenseId;
+    }
 }
