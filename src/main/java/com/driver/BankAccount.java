@@ -31,6 +31,7 @@ public class BankAccount {
          {
              char ch = (char)(sum+'0');
              accountNumber+=ch;
+             sum=0;
          }
 
       }
